@@ -1,0 +1,289 @@
+<h1 class="text-center mt-5">GitHub Save File</h1>
+<div class="container">
+    <div class="card m-6 card-custom">
+        <div class="card-body">
+        <div class="card-title text-center">
+            <h3>Provide details for configuration.yaml file</h3>
+        </div>
+        <form [formGroup]="myform" (ngSubmit)="onSubmit(myform.value)">
+            <div class="form-group" [ngClass]="{'has-error': !formData['repository'].valid && formData['repository'].touched}">
+                <div>repositories:</div>
+                <label>repository:</label>
+                <input type="text" class="form-control" formControlName="repository"/>
+                <!-- <div *ngIf="formData['repository'].touched && formData['repository'].errors"> -->
+                    <div *ngIf="formData['repository'].touched && formData['repository'].errors?.['required']">
+                    <div class="alert alert-danger" *ngIf="formData['repository']">
+                        The repository is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" [ngClass]="{'has-error': !formData['type'].valid && formData['type'].touched}">
+                <label>type:</label>
+                <input type="text" class="form-control" formControlName="type"/>
+                <div *ngIf="formData['type'].touched && formData['type'].errors">
+                    <div class="alert alert-danger" *ngIf="formData['type']">
+                        The type is required
+                    </div>
+                </div>
+            </div>
+            <!-- <div>
+                <label>type:</label>
+                <input type="text" class="form-control" formControlName="type" required="string"/>
+            </div> -->
+            <div class="form-group" [ngClass]="{'has-error': !formData['name'].valid && formData['name'].touched}">
+                <label>name:</label>
+                <input type="text" class="form-control" formControlName="name"/>
+                <div *ngIf="formData['name'].touched && formData['name'].errors">
+                    <div class="alert alert-danger" *ngIf="formData['name']">
+                        The name is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" [ngClass]="{'has-error': !formData['endpoint'].valid && formData['endpoint'].touched}">
+                <label>endpoint:</label>
+                <input type="text" class="form-control" formControlName="endpoint"/>
+                <div *ngIf="formData['endpoint'].touched && formData['endpoint'].errors">
+                    <div class="alert alert-danger" *ngIf="formData['endpoint']">
+                        The endpoint is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" [ngClass]="{'has-error': !formData['ref'].valid && formData['ref'].touched}">
+                <label>ref:</label>
+                <input type="text" class="form-control" formControlName="ref"/>
+                <div *ngIf="formData['ref'].touched && formData['ref'].errors">
+                    <div class="alert alert-danger" *ngIf="formData['ref']">
+                        The ref is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" [ngClass]="{'has-error': !formData['nodeVersionSpec'].valid && formData['nodeVersionSpec'].touched}">
+                <div>variables:</div>
+                <label>nodeVersionSpec:</label>
+                <input type="text" class="form-control" formControlName="nodeVersionSpec"/>
+                <div *ngIf="formData['nodeVersionSpec'].touched && formData['nodeVersionSpec'].errors">
+                    <div class="alert alert-danger" *ngIf="formData['nodeVersionSpec']">
+                        The nodeVersionSpec is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" [ngClass]="{'has-error': !formData['template'].valid && formData['template'].touched}">
+                <label>template:</label>
+                <input type="text" class="form-control" formControlName="template"/>
+                <div *ngIf="formData['template'].touched && formData['template'].errors">
+                    <div class="alert alert-danger" *ngIf="formData['template']">
+                        The template is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" [ngClass]="{'has-error': !formData['agent'].valid && formData['agent'].touched}">
+                <label>windowsAgentPool:</label>
+                <input type="text" class="form-control" formControlName="agent"/>
+                <div *ngIf="formData['agent'].touched && formData['agent'].errors">
+                    <div class="alert alert-danger" *ngIf="formData['agent']">
+                        The agent is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group"
+                [ngClass]="{'has-error': !formData['buildType'].valid && formData['buildType'].touched}">
+                <label>buildType</label>
+                <select class="form-control" name="buildType" formControlName="buildType">
+                    <option value="">--Choose the option--</option>
+                    <option value="Java">Java</option>
+                    <option value="Angular">Angular</option>
+                    <option value="dotnet">Dotnet</option>
+                    <option value="Python">Python</option>
+                </select>
+                <div *ngIf="formData['buildType'].touched && formData['buildType'].errors">
+                    <div class="alert alert-danger" *ngIf="formData['buildType']">
+                        The buildType is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" [ngClass]="{'has-error': !formData['projectName'].valid && formData['projectName'].touched}">
+                <label>projectName:</label>
+                <input type="text" class="form-control" formControlName="projectName"/>
+                <div *ngIf="formData['projectName'].touched && formData['projectName'].errors">
+                    <div class="alert alert-danger" *ngIf="formData['projectName']">
+                        The Project Name is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" [ngClass]="{'has-error': !formData['codeRootDir'].valid && formData['codeRootDir'].touched}">
+                <label>codeRootDir:</label>
+                <input type="text" class="form-control" formControlName="codeRootDir"/>
+                <div *ngIf="formData['codeRootDir'].touched && formData['codeRootDir'].errors">
+                    <div class="alert alert-danger" *ngIf="formData['codeRootDir']">
+                        The Code Root Directory is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" [ngClass]="{'has-error': !formData['enableCi'].valid && formData['enableCi'].touched}">
+                <div>CI:</div>
+                <label>Enabled</label>
+                <select class="form-control" name="enableCi" formControlName="enableCi">
+                    <option value="">--Choose the option--</option>
+                    <option value="True">True</option>
+                    <option value="False">False</option>
+                </select>
+                <div *ngIf="formData['enableCi'].touched && formData['enableCi'].errors">
+                    <div class="alert alert-danger" *ngIf="formData['enableCi']">
+                        The enableCi is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" [ngClass]="{'has-error': !formData['docker'].valid && formData['docker'].touched}">
+                <label>Docker</label>
+                <select class="form-control" name="docker" formControlName="docker">
+                    <option value="">--Choose the option--</option>
+                    <option value="True">True</option>
+                    <option value="False">False</option>
+                </select>
+                <div *ngIf="formData['docker'].touched && formData['docker'].errors">
+                    <div class="alert alert-danger" *ngIf="formData['docker']">
+                        The Docker is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" [ngClass]="{'has-error': !formData['sonar'].valid && formData['sonar'].touched}">
+                <label>SonarQube</label>
+                <select class="form-control" name="sonar" formControlName="sonar">
+                    <option value="">--Choose the option--</option>
+                    <option value="True">True</option>
+                    <option value="False">False</option>
+                </select>
+                <div *ngIf="formData['sonar'].touched && formData['sonar'].errors">
+                    <div class="alert alert-danger" *ngIf="formData['sonar']">
+                        The SonarQube is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" [ngClass]="{'has-error': !formData['sonarProjectKey'].valid && formData['sonarProjectKey'].touched}">
+                <label>sonarProjectKey:</label>
+                <input type="text" class="form-control" formControlName="sonarProjectKey"/>
+                <div *ngIf="formData['sonarProjectKey'].touched && formData['sonarProjectKey'].errors">
+                    <div class="alert alert-danger" *ngIf="formData['sonarProjectKey']">
+                        The Sonar Project Key is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" [ngClass]="{'has-error': !formData['sonarProjectName'].valid && formData['sonarProjectName'].touched}">
+                <label>sonarProjectName:</label>
+                <input type="text" class="form-control" formControlName="sonarProjectName"/>
+                <div *ngIf="formData['sonarProjectName'].touched && formData['sonarProjectName'].errors">
+                    <div class="alert alert-danger" *ngIf="formData['sonarProjectName']">
+                        The Sonar Project Name is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" [ngClass]="{'has-error': !formData['sonarbuildFor'].valid && formData['sonarbuildFor'].touched}">
+                <label>sonarbuildFor:</label>
+                <input type="text" class="form-control" formControlName="sonarbuildFor"/>
+                <div *ngIf="formData['sonarbuildFor'].touched && formData['sonarbuildFor'].errors">
+                    <div class="alert alert-danger" *ngIf="formData['sonarbuildFor']">
+                        The Sonar Build For is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" [ngClass]="{'has-error': !formData['azureSubscription'].valid && formData['azureSubscription'].touched}">
+                <label>azureSubscription:</label>
+                <input type="text" class="form-control" formControlName="azureSubscription"/>
+                <div *ngIf="formData['azureSubscription'].touched && formData['azureSubscription'].errors">
+                    <div class="alert alert-danger" *ngIf="formData['azureSubscription']">
+                        The Azure Subscription is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" [ngClass]="{'has-error': !formData['scan'].valid && formData['scan'].touched}">
+                <label>scan</label>
+                <select class="form-control" name="scan" formControlName="scan">
+                    <option value="">--Choose the option--</option>
+                    <option value="True">True</option>
+                    <option value="False">False</option>
+                </select>
+                <div *ngIf="formData['scan'].touched && formData['scan'].errors">
+                    <div class="alert alert-danger" *ngIf="formData['scan']">
+                        The Scan is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" [ngClass]="{'has-error': !formData['gate'].valid && formData['gate'].touched}">
+                <label>gate</label>
+                <select class="form-control" name="gate" formControlName="gate">
+                    <option value="">--Choose the option--</option>
+                    <option value="True">True</option>
+                    <option value="False">False</option>
+                </select>
+                <div *ngIf="formData['gate'].touched && formData['gate'].errors">
+                    <div class="alert alert-danger" *ngIf="formData['gate']">
+                        The Gate is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" [ngClass]="{'has-error': !formData['enableCd'].valid && formData['enableCd'].touched}">
+                <div>CD:</div>
+                <label>Enabled:</label>
+                <select class="form-control" name="enableCd" formControlName="enableCd">
+                    <option value="">--Choose the option--</option>
+                    <option value="True">True</option>
+                    <option value="False">False</option>
+                </select>
+                <div *ngIf="formData['enableCd'].touched && formData['enableCd'].errors">
+                    <div class="alert alert-danger" *ngIf="formData['enableCd']">
+                        The Enabled is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" [ngClass]="{'has-error': !formData['azureSubscrip'].valid && formData['azureSubscrip'].touched}">
+                <label>azureSubscription:</label>
+                <input type="text" class="form-control" formControlName="azureSubscrip"/>
+                <div *ngIf="formData['azureSubscrip'].touched && formData['azureSubscrip'].errors">
+                    <div class="alert alert-danger" *ngIf="formData['azureSubscrip']">
+                        The Azure Subscription is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" [ngClass]="{'has-error': !formData['azureAppServiceName'].valid && formData['azureAppServiceName'].touched}">
+                <label>azureAppServiceName:</label>
+                <input type="text" class="form-control" formControlName="azureAppServiceName"/>
+                <div *ngIf="formData['azureAppServiceName'].touched && formData['azureAppServiceName'].errors">
+                    <div class="alert alert-danger" *ngIf="formData['azureAppServiceName']">
+                        The azureAppServiceName is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" [ngClass]="{'has-error': !formData['environmentName'].valid && formData['environmentName'].touched}">
+                <label>environmentName:</label>
+                <input type="text" class="form-control" formControlName="environmentName"/>
+                <div *ngIf="formData['environmentName'].touched && formData['environmentName'].errors">
+                    <div class="alert alert-danger" *ngIf="formData['environmentName']">
+                        The environmentName is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" [ngClass]="{'has-error': !formData['gitUrl'].valid && formData['gitUrl'].touched}">
+                <label>Github Url</label>
+                <input type="text" class="form-control" placeholder="Enter Github Url" formControlName="gitUrl"/>
+                <div *ngIf="formData['gitUrl'].touched && formData['gitUrl'].errors">
+                    <div class="alert alert-danger" *ngIf="formData['gitUrl']">
+                        The Github url is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group" [ngClass]="{'has-error': !formData['branch'].valid && formData['branch'].touched}">
+                <label>Github Branch</label>
+                <input type="text" class="form-control" placeholder="Enter Github Branch" formControlName="branch"/>
+                <div *ngIf="formData['branch'].touched && formData['branch'].errors">
+                    <div class="alert alert-danger" *ngIf="formData['branch']">
+                        The Git Branch is required
+                    </div>
+                </div>
+            </div>
+            <div class="form-group text-center mt-3">
+                <input type="submit" class="form-group btn btn-primary" value="Commit to Github"/>
+            </div>
+        </form>
+        </div>
+    </div>
+</div>
