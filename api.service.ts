@@ -10,7 +10,7 @@ export class ApiService {
 
   // username = 'vijayanandhini-v_infosys';
   // repo = 'Angular';
-  token = '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'; //PAT
+  token = ''; //PAT
 
   
   
